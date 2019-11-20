@@ -83,7 +83,6 @@ public class SheetsMain {
         requests.add(new Request()
                 .setRepeatCell(new RepeatCellRequest()
                         .setCell(new CellData()
-                                .setUserEnteredValue( new ExtendedValue().setStringValue("cell text"))
                                 .setUserEnteredFormat(new CellFormat()
                                         .setBackgroundColor(new Color()
                                                 .setRed(Float.valueOf("1"))
@@ -99,7 +98,7 @@ public class SheetsMain {
                                 .setStartColumnIndex(gridRange[2])
                                 .setEndColumnIndex(gridRange[3])
                         )
-                        .setFields("*")
+                        .setFields("userEnteredFormat(backgroundColor)")
                 )
         );
 
@@ -112,20 +111,20 @@ public class SheetsMain {
         sheetsService = getSheetsService();
         driveService = getDriveService();
 
-        java.io.File file = new java.io.File("src/main/resources/sheet.csv");
-        String link = uploadCSVfile(file);
-        System.out.println("Google spreadsheets link: " + link);
-
-        String range = "A1:E2";
-
-        String[] split = link.split("/");
-        String sheetId = split[split.length-1];
-        List<List<Object>> data = getData(sheetId, range);
-        System.out.println(data);
+//        java.io.File file = new java.io.File("src/main/resources/sheet.csv");
+//        String link = uploadCSVfile(file);
+//        System.out.println("Google spreadsheets link: " + link);
+//
+//        String range = "A1:E2";
+//
+//        String[] split = link.split("/");
+//        String sheetId = split[split.length-1];
+//        List<List<Object>> data = getData(sheetId, range);
+//        System.out.println(data);
 
         String spreadsheetId = "1XkQHVFPl52aAnP8TKP2DVRpZe5Odo3NujSXyGXuv7aY";
         Integer gid = 2008177436;
-        Integer[] gridRange = {0,2,0,6};
+        Integer[] gridRange = {0,2,0,5};
         setBGcolorRed(spreadsheetId, gid, gridRange);
     }
 }
